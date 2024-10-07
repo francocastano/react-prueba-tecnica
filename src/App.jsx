@@ -1,3 +1,4 @@
+import './App.css'
 import React from 'react'
 import { useEffect, useState } from 'react'
 
@@ -11,8 +12,8 @@ export function App() {
   useEffect(() => {
     async function getRandomFact() {
       const response = await fetch(CAT_ENDPOINT_RANDOM_FACT)
-      const randomFact = await response.json()
-      setFact(randomFact.fact)
+      const { fact } = await response.json()
+      setFact(fact)
     }
     getRandomFact()
   }, [])
@@ -24,26 +25,12 @@ export function App() {
 
     async function getCatImageURL() {
       const response = await fetch(`${CAT_PREFIX_URL}/cat/says/${threeWord}?size=50&fontColor=red&json=true`)
-      const catImage = await response.json()
-      const { _id } = catImage
+      const { _id } = await response.json()
       const catURL = `/cat/${_id}/says/${threeWord}?font=Impact&fontSize=30&fontColor=%23FFF&fontBackground=none&position=center`
       setImageURL(catURL)
     }
     getCatImageURL()
   }, [fact])
-
-
-
-  // T
-  // useEffect(() => {
-  //   async function getRandomFact() {
-  //     const res = await fetch(CAT_ENDPOINT_RANDOM_FACT)
-  //     const json = await res.json()
-  //     setFact(json.fact)
-  //   }
-  //   getRandomFact()
-  // }, [])
-
 
   return (
     <main>
