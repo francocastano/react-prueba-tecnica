@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-const LOCALHOST_URL = 'http://localhost:5173';
+const LOCALHOST_URL = 'http://localhost:5000/react-prueba-tecnica';
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com/cat';
 
 test('app shows random fact and image', async ({ page }) => {
@@ -14,5 +14,6 @@ test('app shows random fact and image', async ({ page }) => {
     const imageSrc = await image.getAttribute('src');
 
     await expect(textContent?.length).toBeGreaterThan(0);
+    
     await expect(imageSrc?.startsWith(CAT_PREFIX_IMAGE_URL)).toBeTruthy();
 });
